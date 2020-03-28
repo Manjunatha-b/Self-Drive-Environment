@@ -1,13 +1,18 @@
 # Simple Self Driving Car Environment
 
 Created using Unity and C#. Run trainer_config.yaml and when its listening on port, run the scene in unity to train. Or else insert CarBrain into NN model region of Car's Agent component to see my results. Or if you want python interface, Run pythonSide.py and when it is listening to port 5004, run the scene in unity.
+<br>
+<img src="ReadmeFiles/Capture.PNG" width="700" ><br>
 
 ### 1.) Environment Components:
 1. <b>Car:</b> Simple car with mass set to 1000 and drag forces set to 0.05 through rigidbody settings. throttle is applied to all 4 wheels of the car with wheel collider component. maximum steering angle of 20 degrees. Always spawns in the same place.<br/>
 2. <b>Cube:</b> Is the target which the car tries to go towards. Will spawn randomly each episode.<br/>
 3. <b>Plane:</b> Simple plane which supports the car and cube with mesh collider.<br/>
 
-the above three components are added together into one object <b>"Prefab"</b> and duplicated 8 times to facilitate parallel learning of agents
+the above three components are added together into one object <b>"Prefab"</b> and duplicated 8 times to facilitate parallel learning of agents.(For PPO 8, SAC 4 was used)
+<br>
+<img src="ReadmeFiles/stacked.PNG" width="700" ><br>
+
 
 ### 2.) Reset conditions:
 1. <b>Car falls of plane</b>: checks if y coordinate of plane is 2 units less than its initial position and resets.
@@ -45,12 +50,15 @@ State of the environment is represented by a vector of size 5 where:
 
 ### 5.) The learning of the agent:
 
-Used unity's PPO algorith with default parameters to train the agent. took ~1 hour 40 minutes to reach the result that is shown below.
+Used unity's PPO and SAC algorithm with default parameters to train the agent. took ~1 hour 20 minutes to reach a reasonable performance. The difference in algorithms is shown in the graph. SAC used only 4 instances of the game while PPO used 8 and SAC still managed to outperform by a significant margin. Red = SAC, Orange = PPO. X axis = steps, Y axis = Cumulative reward<br>
+<img src="ReadmeFiles/tensorgraph.PNG" width="700" ><br>
 
 ### 6.) Custom interfacing with python:
 
 Created a template python script to call the environment and listen to it's inputs of observations and send rewards for future use.
 This helps us to manually create models using any library and have more fine tuned control over the learning process.
 
+### 7.) Result:
 
+<img src="ReadmeFiles/Result.gif" width="700" ><br>
 
