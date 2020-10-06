@@ -1,5 +1,7 @@
 # Simple Self Driving Car Environment
 
+### This is just the first stage of the project, second stage is here https://github.com/Manjunatha-b/Drift-Learner
+
 Created using Unity and C#. Run trainer_config.yaml and when its listening on port, run the scene in unity to train. Or else insert CarBrain into NN model region of Car's Agent component to see my results. Or if you want python interface, Run pythonSide.py and when it is listening to port 5004, run the scene in unity.
 <br>
 <img src="ReadmeFiles/Capture.PNG" width="700" ><br>
